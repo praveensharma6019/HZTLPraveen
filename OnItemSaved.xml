@@ -1,0 +1,40 @@
+﻿<configuration xmlns:patch="http://www.sitecore.net/xmlconfig/" xmlns:set="http://www.sitecore.net/xmlconfig/set/" xmlns:role="http://www.sitecore.net/xmlconfig/role/">
+	<sitecore>
+		<contentSearch>
+			<indexConfigurations>
+				<defaultSolrIndexConfiguration type="Sitecore.ContentSearch.SolrProvider.SolrIndexConfiguration, Sitecore.ContentSearch.SolrProvider">
+					<documentOptions type="Sitecore.ContentSearch.SolrProvider.SolrDocumentBuilderOptions, Sitecore.ContentSearch.SolrProvider">
+						<!--<exclude hint="list:AddExcludedField">
+              <__SortOrder>
+                <patch:delete />
+              </__SortOrder>
+            </exclude>-->
+						<fields hint="raw:AddComputedIndexField">
+							<field fieldName="computedsortfield" returnType="int">DCX.Foundation.Extension.Helper.SortOrder, DCX.Foundation.Extension</field>
+						</fields>
+					</documentOptions>
+				</defaultSolrIndexConfiguration>
+			</indexConfigurations>
+		</contentSearch>
+		<pipelines>
+			<httpRequestBegin>
+				<processor patch:after="processor[@type='Sitecore.Pipelines.HttpRequest.ItemResolver, Sitecore.Kernel']"
+						   type="DCX.Foundation.Extension.Extensions.CustomHTTP404Redirect, DCX.Foundation.Extension" resolve="true" />
+			</httpRequestBegin>
+		</pipelines>
+		<!--<pipelines>
+      <group groupName="layoutService">
+        <pipelines>
+          <getLayoutServiceContext>
+            <processor type="DCX.Foundation.Extension.Extensions.LayoutServiceContextExtension, DCX.Foundation.Extension" resolve="true" />
+          </getLayoutServiceContext>
+        </pipelines>
+      </group>
+    </pipelines>-->
+		<events>
+			<event name="item:saved">
+				<handler type="DCX.Foundation.Extension.Buckets.BucketSyncEventHandler, DCX.Foundation.Extension" method="OnItemSaved" />
+			</event>
+		</events>
+	</sitecore>
+</configuration>
