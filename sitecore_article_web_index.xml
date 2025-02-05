@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns:patch="http://www.sitecore.net/xmlconfig/" xmlns:role="http://www.sitecore.net/xmlconfig/role/" xmlns:search="http://www.sitecore.net/xmlconfig/search/">
+	<sitecore role:require="Standalone or ContentDelivery or ContentManagement" search:require="solr">
+		<settings>
+			<setting name="DCX.Feature.SiteSearch.ArticleIndexName" value="sitecore_article_web_index" />
+			<setting name="DCX.Feature.SiteSearch.ArticleTemplateId" value="{42CE662C-173F-4597-A3FB-5DE1C9E724C8}" />
+		</settings>
+		<contentSearch>
+			<configuration type="Sitecore.ContentSearch.ContentSearchConfiguration, Sitecore.ContentSearch">
+				<indexes hint="list:AddIndex">
+					<index id="sitecore_article_web_index" type="Sitecore.ContentSearch.SolrProvider.SolrSearchIndex, Sitecore.ContentSearch.SolrProvider">
+						<param desc="name">$(id)</param>
+						<param desc="core">scsec_web_index_article</param>
+						<param desc="propertyStore" ref="contentSearch/indexConfigurations/databasePropertyStore" param1="$(id)" />
+						<configuration ref="contentSearch/indexConfigurations/defaultSolrIndexConfiguration">
+							<documentOptions type="Sitecore.ContentSearch.SolrProvider.SolrDocumentBuilderOptions, Sitecore.ContentSearch.SolrProvider">
+								<indexAllFields>false</indexAllFields>
+								<!-- Included fields -->
+								<include hint="list:AddIncludedField">
+									<Title>{4C8501F0-633A-4097-8560-5137FBB2D615}</Title>
+									<Summary>{10F2FA27-1E78-4814-8349-F4C0C14AED0B}</Summary>
+									<Picture>{7528FD42-3EB1-49CD-AD42-8AEAD86B037E}</Picture>
+									<ArticleDate>{824BF6E9-194C-4B05-8466-036B5E4989EA}</ArticleDate>
+									<Content>{E3A66FE5-B2B4-43B9-B3B6-D08793A3D25F}</Content>
+									<Type>{6D793377-3958-4D45-90C9-8E9678BE5F37}</Type>
+									<CategoryType>{40C975CB-F7B4-4FED-BE8A-CAA879E18668}</CategoryType>
+									<title>{11001CE9-A430-40D0-A99C-5DA23EA30EAB}</title>
+									<shortDescription>{97760384-8C15-4B66-AD00-8EB987614BCB}</shortDescription>
+									<description>{CD760D3D-861A-44C3-B5F5-22C05F94E889}</description>
+									<dateTime>{E3BED7E3-2173-4AC2-B740-86908B88E0F4}</dateTime>
+								</include>
+								<!-- Included templates -->
+								<include hint="list:AddIncludedTemplate">
+									<Article>{42CE662C-173F-4597-A3FB-5DE1C9E724C8}</Article>
+									<LearningDetail>{81CEB426-DBA4-4C19-9762-518349604EB8}</LearningDetail>
+
+								</include>
+								<!--Page Link List-->
+								<fields hint="raw:AddComputedIndexField">
+									<field fieldName="urllink" returnType="string" indexType="tokenized" storageType="yes">Sitecore.Feature.SiteSearch.Fields.ItemURL, DCX.Feature.SiteSearch</field>
+								</fields>
+								<fields hint="raw:AddComputedIndexField">
+									<field fieldName="customimage" sourceField="Picture" returnType="text">DCX.Feature.SiteSearch.Infrastructure.Fields.ComputedImage, DCX.Feature.SiteSearch</field>
+								</fields>
+								<fields hint="raw:AddComputedIndexField">
+									<field fieldName="customarticledate" sourceField="ArticleDate" returnType="text" toStringFormat="yyyy/MM/dd">DCX.Feature.SiteSearch.Infrastructure.Fields.ComputedDateField, DCX.Feature.SiteSearch</field>
+								</fields>
+								<fields hint="raw:AddComputedIndexField">
+									<field fieldName="isstandardvalue" storageType="no" indexType="untokenized">DCX.Feature.SiteSearch.Infrastructure.Fields.IsStandardValue, DCX.Feature.SiteSearch</field>
+								</fields>
+								<!--Article landing page data from datasorce-->
+								<fields hint="raw:AddComputedIndexField">
+									<field fieldName="headingdatasourcereference" fieldType="Single-Line Text" targetField="heading" renderingName="SingleColumnLayout" returnType="text" indexType="tokenized" storageType="yes">DCX.Feature.SiteSearch.Infrastructure.Fields.DataSourceReference, DCX.Feature.SiteSearch</field>
+								</fields>
+								<!--<fields hint="raw:AddComputedIndexField">
+                  <field fieldName="descriptiondatasourcereference" fieldType="Rich Text" targetField="content" renderingName="TitleandText" returnType="text" indexType="tokenized" storageType="yes">DCX.Feature.SiteSearch.Infrastructure.Fields.DataSourceReference, DCX.Feature.SiteSearch</field>
+                </fields>-->
+								<fields hint="raw:AddComputedIndexField">
+									<field fieldName="imagedatasourcereference" fieldType="Image" targetField="image" renderingName="ContentBlock" returnType="text" indexType="tokenized" storageType="yes">DCX.Feature.SiteSearch.Infrastructure.Fields.DataSourceReference, DCX.Feature.SiteSearch</field>
+								</fields>
+								<fields hint="raw:AddComputedIndexField">
+									<field fieldName="imagealtdatasourcereference" fieldType="Image" targetField="image" renderingName="ContentBlock" mediaAlt="true" returnType="text" indexType="tokenized" storageType="yes">DCX.Feature.SiteSearch.Infrastructure.Fields.DataSourceReference, DCX.Feature.SiteSearch</field>
+								</fields>
+								<fields hint="raw:AddComputedIndexField">
+									<field fieldName="categoryname" sourceField="CategoryType" targetField="Text" returnType="text">DCX.Feature.SiteSearch.Infrastructure.Fields.ComputedReference, DCX.Feature.SiteSearch</field>
+								</fields>
+								<!--LearningDetail page data-->
+								<fields hint="raw:AddComputedIndexField">
+									<field fieldName="customImage" sourceField="image" returnType="text">DCX.Feature.SiteSearch.Infrastructure.Fields.CustomComputedImage, DCX.Feature.SiteSearch</field>
+								</fields>
+								<fields hint="raw:AddComputedIndexField">
+									<field fieldName="customImageMobile" sourceField="imageMobile" returnType="text">DCX.Feature.SiteSearch.Infrastructure.Fields.CustomComputedImage, DCX.Feature.SiteSearch</field>
+								</fields>
+								<fields hint="raw:AddComputedIndexField">
+									<field fieldName="customImageTab" sourceField="imageTab" returnType="text">DCX.Feature.SiteSearch.Infrastructure.Fields.CustomComputedImage, DCX.Feature.SiteSearch</field>
+								</fields>
+								<fields hint="raw:AddComputedIndexField">
+									<field fieldName="customDate" sourceField="dateTime" returnType="text">DCX.Feature.SiteSearch.Infrastructure.Fields.ComputedDateField, DCX.Feature.SiteSearch</field>
+								</fields>
+								<fields hint="raw:AddComputedIndexField">
+									<field fieldName="customVideoLink" sourceField="video" returnType="text">DCX.Feature.SiteSearch.Infrastructure.Fields.GeneralLinkUrlComputedField, DCX.Feature.SiteSearch</field>
+								</fields>
+								<fields hint="raw:AddComputedIndexField">
+									<field fieldName="customTopicsList" sourceField="topics" targetField="title" returnType="text">DCX.Feature.SiteSearch.Infrastructure.Fields.MultilistComputedField, DCX.Feature.SiteSearch</field>
+								</fields>
+								<fields hint="raw:AddComputedIndexField">
+									<field fieldName="customContentTypeList" sourceField="contentType" targetField="title" returnType="text">DCX.Feature.SiteSearch.Infrastructure.Fields.MultilistComputedField, DCX.Feature.SiteSearch</field>
+								</fields>
+								<fields hint="raw:AddComputedIndexField">
+									<field fieldName="customItemUrl">DCX.Feature.SiteSearch.Infrastructure.Fields.ComputedItemUrl, DCX.Feature.SiteSearch</field>
+								</fields>
+							</documentOptions>
+						</configuration>
+						<strategies hint="list:AddStrategy">
+							<strategy ref="contentSearch/indexConfigurations/indexUpdateStrategies/manual" role:require="(ContentManagement and !Indexing) or (ContentDelivery and !Indexing)" />
+							<strategy ref="contentSearch/indexConfigurations/indexUpdateStrategies/onPublishEndAsyncSingleInstance" role:require="Standalone or (ContentManagement and Indexing) or (ContentDelivery and Indexing)" />
+						</strategies>
+						<locations hint="list:AddCrawler">
+							<crawler type="Sitecore.ContentSearch.SitecoreItemCrawler, Sitecore.ContentSearch">
+								<Database>web</Database>
+								<Root>/sitecore</Root>
+							</crawler>
+						</locations>
+						<enableItemLanguageFallback>false</enableItemLanguageFallback>
+						<enableFieldLanguageFallback>false</enableFieldLanguageFallback>
+					</index>
+				</indexes>
+			</configuration>
+		</contentSearch>
+	</sitecore>
+</configuration>
