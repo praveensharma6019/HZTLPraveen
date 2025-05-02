@@ -1,0 +1,455 @@
+a[target='_blank']:after {
+  content: '\1F5D7'
+}
+
+/*
+  Hides Sitecore editor markup,
+  if you run the app in connected mode while the Sitecore cookies
+  are set to edit mode.
+*/
+.scChromeData, .scpm { display: none !important; }
+
+/*
+  Styles for default JSS error components
+*/
+.sc-jss-editing-error,
+.sc-jss-placeholder-error {
+  padding: 1em;
+  background-color: lightyellow;
+}
+
+/* 
+  Style for default content block
+*/
+.contentTitle {
+    font-size: 3.5rem;
+    font-weight: 300;
+    line-height: 1.2;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Card Section Start */
+/* Card Section Styles */
+.CardSectionDetails {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: space-around;
+  margin-top: 2rem;
+}
+
+.CardSectionDetails .col-sm-3 {
+  flex: 1 1 calc(25% - 1.5rem);
+  max-width: 25%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Card Styles */
+.card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-img-top {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 1rem;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.card-text {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 1.25rem;
+}
+
+.card .btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.card .btn:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+  .CardSectionDetails .col-sm-3 {
+    flex: 1 1 calc(33.333% - 1.5rem);
+    max-width: 33.333%;
+  }
+}
+
+@media (max-width: 768px) {
+  .CardSectionDetails .col-sm-3 {
+    flex: 1 1 calc(50% - 1.5rem);
+    max-width: 50%;
+  }
+}
+
+@media (max-width: 480px) {
+  .CardSectionDetails .col-sm-3 {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+}
+/* Card Section End */
+
+/* Accordion start */
+
+/* Accordion container */
+.accordion {
+  background-color: #f8f9fa; /* Light background color */
+  border-radius: 8px;
+  margin: 20px 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Accordion item */
+.accordion-item {
+  border: 1px solid #ddd;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+/* Accordion header */
+.accordion-header {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.accordion-header button {
+  font-size: 1.1rem;
+  color: inherit;
+  background-color: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
+  padding: 0;
+  font-weight: bold;
+}
+
+/* Change the header background color when hovered */
+.accordion-header:hover {
+  background-color: #0056b3;
+}
+
+/* Accordion collapse body */
+.accordion-body {
+  padding: 15px;
+  font-size: 1rem;
+  background-color: #f1f1f1;
+  border-top: 1px solid #ddd;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Ensuring the accordion button is responsive */
+.accordion-button {
+  padding: 0.75rem 1.25rem;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+/* Style when the accordion is collapsed */
+.accordion-collapse.collapse {
+  display: none;
+}
+
+/* Style when the accordion is expanded */
+.accordion-collapse.show {
+  display: block;
+}
+
+/* Add animation for expanding and collapsing */
+.accordion-collapse {
+  transition: height 0.3s ease;
+}
+
+/* Accordion button focus state */
+.accordion-button:focus {
+  box-shadow: none;
+}
+
+/* Accordion item for smaller screens (responsiveness) */
+@media (max-width: 576px) {
+  .accordion-header {
+    font-size: 1rem;
+    padding: 8px 12px;
+  }
+  
+  .accordion-body {
+    font-size: 0.95rem;
+    padding: 12px;
+  }
+}
+
+/* Accordion End */
+
+/* Carousel Start*/
+/* Global styles for Carousel */
+.carousel {
+  position: relative;
+  width: 100%;
+  margin-bottom: 30px; /* Add space below the carousel */
+}
+
+.carousel-inner {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.carousel-item {
+  position: relative;
+  display: none;
+  width: 100%;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.carousel-item-next,
+.carousel-item-prev,
+.carousel-item.active {
+  display: block;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+/* Center the carousel-caption */
+.carousel-caption {
+  position: absolute;
+  top: 50%;
+  left: 50% !important;
+  right: 0% !important;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.5); /* Dark background for caption */
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-align: center;
+  opacity: 0.9;
+  z-index: 10; /* Ensure caption stays on top of the image */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+}
+
+.carousel-caption h5 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Text shadow for better visibility */
+}
+
+.carousel-caption .rich-text {
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+/* Control buttons - prev and next */
+.carousel-control-prev,
+.carousel-control-next {
+  position: absolute;
+  top:50% !important;
+  transform: translateY(-50%); /* Vertically center the control buttons */
+  font-size: 1.5rem;
+  color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  padding: 10px;
+  z-index: 20; /* Ensure the controls stay above the carousel items */
+  transition: background-color 0.3s ease, color 0.3s ease;
+  width: 40px; /* Define width for the control buttons */
+  height: 40px; /* Define height for the control buttons */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Position the 'next' button at the right center */
+.carousel-control-next {
+  right: 10px; /* Place it at the right edge of the carousel */
+}
+
+/* Position the 'prev' button at the left center */
+.carousel-control-prev {
+  left: 10px; /* Place it at the left edge of the carousel */
+}
+
+/* Hover effects for control buttons */
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
+}
+
+/* Indicators */
+.carousel-indicators {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  left: 10px;
+  z-index: 15;
+  display: flex;
+  justify-content: center;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+
+.carousel-indicators li {
+  width: 10px;
+  height: 10px;
+  margin: 0 5px;
+  background-color: #fff;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.carousel-indicators .active {
+  background-color: #007bff;
+}
+
+.carousel-indicators li:hover {
+  background-color: #007bff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .carousel-caption h5 {
+    font-size: 1.2rem;
+  }
+
+  .carousel-caption .rich-text {
+    font-size: 0.9rem;
+  }
+}
+
+/* Carousel End*/
+
+/* Header Start*/
+/* General Flexbox container styling */
+.d-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background-color: #333; /* Dark background for header */
+  padding: 10px 20px; /* Add some padding */
+}
+
+
+a.text-white {
+  color: white; /* White color for links */
+  text-decoration: none;
+}
+
+a.text-white:hover {
+  color: #ddd; /* Lighter color on hover */
+  text-decoration: underline; /* Underline on hover */
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+  color: white; /* Ensure title text is white */
+}
+
+nav {
+  display: flex;
+}
+
+ul.nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+}
+
+.nav-item {
+  margin-right: 20px; /* Space between menu items */
+}
+
+.nav-item:last-child {
+  margin-right: 0; /* No margin for the last item */
+}
+
+.nav-link {
+  color: white; /* White text for links */
+  font-size: 1rem;
+  text-decoration: none;
+  padding: 5px 10px;
+}
+
+.nav-link:hover {
+  color: #ddd; /* Hover color for links */
+  text-decoration: underline;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .d-flex {
+    flex-direction: column; /* Stack items vertically on mobile */
+    align-items: flex-start; /* Align items to the left */
+  }
+
+  h1 {
+    font-size: 1.5rem; /* Smaller title size on mobile */
+  }
+
+  ul.nav {
+    flex-direction: column; /* Stack navigation items vertically */
+    margin-top: 10px; /* Space between title and navigation */
+  }
+
+  .nav-item {
+    margin-right: 0; /* No margin on mobile */
+    margin-bottom: 10px; /* Add space between items vertically */
+  }
+
+  .nav-link {
+    font-size: 1.1rem; /* Slightly larger font size for readability */
+  }
+}
+
+/* Header End*/
